@@ -6,6 +6,7 @@
 package vista;
 
 import java.util.TreeSet;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import modelo.Categoria;
 import modelo.Producto;
@@ -23,9 +24,22 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
      */
     public MenuDeTodoVista() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Menú");
+        this.setResizable(false);
+        
         
        
     }
+
+    public JDesktopPane getEscritorio1() {
+        return escritorio1;
+    }
+
+    public void setEscritorio1(JDesktopPane escritorio1) {
+        this.escritorio1 = escritorio1;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,8 +50,7 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        escritorio1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuProducto = new javax.swing.JMenuItem();
@@ -51,24 +64,24 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(600, 350));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/PrincipL.jpg"))); // NOI18N
+        escritorio1.setDesktopManager(null);
+        escritorio1.setOpaque(false);
+        escritorio1.setSelectedFrame(escritorio1.getSelectedFrame());
 
-        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
-        escritorio.setLayout(escritorioLayout);
-        escritorioLayout.setHorizontalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout escritorio1Layout = new javax.swing.GroupLayout(escritorio1);
+        escritorio1.setLayout(escritorio1Layout);
+        escritorio1Layout.setHorizontalGroup(
+            escritorio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 779, Short.MAX_VALUE)
         );
-        escritorioLayout.setVerticalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+        escritorio1Layout.setVerticalGroup(
+            escritorio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
         );
 
-        getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 400));
+        getContentPane().add(escritorio1);
 
         jMenu1.setText("Administracion");
 
@@ -106,6 +119,11 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Por Precio");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -134,15 +152,23 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         
-        escritorio.removeAll();
-        escritorio.repaint();
+        escritorio1.removeAll();
+        escritorio1.repaint();
         
-        BusquedaPorNombreVista busca = new BusquedaPorNombreVista();
-        
-        busca.setVisible(true);
-        escritorio.add(busca);
-        escritorio.moveToFront(busca);
-        
+         BusquedaPorNombreVista bpn = new BusquedaPorNombreVista();
+
+        // Centrar el InternalFrame en el DesktopPane
+        int desktopWidth = escritorio1.getWidth();
+        int desktopHeight = escritorio1.getHeight();
+        int frameWidth = bpn.getWidth();
+        int frameHeight = bpn.getHeight();
+
+        bpn.setLocation((desktopWidth - frameWidth) / 2, (desktopHeight - frameHeight) / 2);
+
+        bpn.setVisible(true);
+
+        escritorio1.add(bpn);
+        escritorio1.moveToFront(bpn);
         
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -154,25 +180,25 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
 
     private void jMenuProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProductoActionPerformed
         // TODO add your handling code here:
-         escritorio.removeAll();
-        escritorio.repaint();
+        escritorio1.removeAll();
+        escritorio1.repaint();
         
         GestionProductosVista gestion = new GestionProductosVista();
         
         gestion.setVisible(true);
-        escritorio.add(gestion);
-        escritorio.moveToFront(gestion);
+        escritorio1.add(gestion);
+        escritorio1.moveToFront(gestion);
     }//GEN-LAST:event_jMenuProductoActionPerformed
 
     private void jMenuRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRubroActionPerformed
         // TODO add your handling code here:
-        escritorio.removeAll();
-        escritorio.repaint();
+        escritorio1.removeAll();
+        escritorio1.repaint();
         BusquedaPorRubroVista rubro = new BusquedaPorRubroVista();
         
         rubro.setVisible(true);
-        escritorio.add(rubro);
-        escritorio.moveToFront(rubro);
+        escritorio1.add(rubro);
+       escritorio1.moveToFront(rubro);
         
     }//GEN-LAST:event_jMenuRubroActionPerformed
 
@@ -186,6 +212,16 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
        System.exit(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_jMenuItemSalirActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        escritorio1.removeAll();
+        escritorio1.repaint();
+        BusquedaPorPrecio precio = new BusquedaPorPrecio();
+        
+        precio.setVisible(true);
+        escritorio1.add(precio);
+       escritorio1.moveToFront(precio);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,13 +255,13 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
             public void run() {
                 new MenuDeTodoVista().setVisible(true);
                 new MenuDeTodoVista().setLocationRelativeTo(null);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDesktopPane escritorio1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3Salir;

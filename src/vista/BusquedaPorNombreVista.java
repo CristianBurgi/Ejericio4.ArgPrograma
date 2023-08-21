@@ -16,8 +16,11 @@ public class BusquedaPorNombreVista extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo = new DefaultTableModel(){
     
     public boolean isCellEditable(int f, int c){
-        
+        if (c==2) {
+            return true;
+        }else{
         return false;
+        }
     }
 };
     /**
@@ -39,7 +42,6 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNombreAbuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -47,12 +49,11 @@ private DefaultTableModel modelo = new DefaultTableModel(){
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Busuqeda Por Nombre");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Listado Por Nombre");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 6, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,7 +109,6 @@ private DefaultTableModel modelo = new DefaultTableModel(){
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;

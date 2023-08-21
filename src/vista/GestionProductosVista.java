@@ -15,6 +15,7 @@ import modelo.Producto;
  * @author Cristian
  */
 public class GestionProductosVista extends javax.swing.JInternalFrame {
+  
 
     /**
      * Creates new form GestionProductosVista
@@ -24,6 +25,7 @@ public class GestionProductosVista extends javax.swing.JInternalFrame {
         this.setClosable(true);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,12 +46,18 @@ public class GestionProductosVista extends javax.swing.JInternalFrame {
         txtCodigo = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
+        jButtonBuscarProducto = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        escritorioGestionProducto = new javax.swing.JDesktopPane();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Gestion de Productos");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 51));
@@ -87,6 +95,16 @@ public class GestionProductosVista extends javax.swing.JInternalFrame {
         getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 222, 63, -1));
         getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 138, 64, -1));
 
+        jButtonBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/552330-icone-de-de-lupa-grátis-v.jpg"))); // NOI18N
+        jButtonBuscarProducto.setOpaque(true);
+        jButtonBuscarProducto.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButtonBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarProductoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+
         jButton1.setText("Nuevo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,8 +132,9 @@ public class GestionProductosVista extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 281, 65, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wallpaper-azul-papel-de-parede-azul-fundo-5.jpg"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 320));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wallpaper-azul-papel-de-parede-azul-fundo-5.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 440));
+        getContentPane().add(escritorioGestionProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -126,33 +145,35 @@ public class GestionProductosVista extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        try {
-            if (txtCodigo.getText().isEmpty() && txtDescripcion.getText().isEmpty()
-                    && txtPrecio.getText().isEmpty() && txtStock.getText().isEmpty()) {
 
-                JOptionPane.showMessageDialog(this, "Hay campos vacios.");
+        if (txtCodigo.getText().isEmpty() && txtDescripcion.getText().isEmpty()
+                && txtPrecio.getText().isEmpty() && txtStock.getText().isEmpty()) {
 
+            JOptionPane.showMessageDialog(this, "Hay campos vacios.");
+
+        } else {
+            try {
+                int codigo = Integer.parseInt(txtCodigo.getText());
+                String descripcion = txtDescripcion.getText();
+                double precio = Double.parseDouble(txtPrecio.getText());
+                int stock = Integer.parseInt(txtStock.getText());
+                String rubro = (String) cmb1.getSelectedItem();
+
+                Producto p1 = new Producto(codigo, descripcion, precio, stock, rubro);
+
+                MenuDeTodoVista.listaProductos.add(p1);
+                JOptionPane.showMessageDialog(this, "El producto se cargó Correctamente");
+                //seteo a cero los textos
+                txtCodigo.setText("");
+                txtDescripcion.setText("");
+                txtPrecio.setText("");
+                txtStock.setText("");
+            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(this, "Debe ingresar numeros en el campo 'Código', 'Precio' y 'Stock'");
             }
-            int codigo = Integer.parseInt(txtCodigo.getText());
-            String descripcion = txtDescripcion.getText();
-            double precio = Double.parseDouble(txtPrecio.getText());
-            int stock = Integer.parseInt(txtStock.getText());
-            String rubro = (String) cmb1.getSelectedItem();
-
-            Producto p1 = new Producto(codigo, descripcion, precio, stock, rubro);
-
-            MenuDeTodoVista.listaProductos.add(p1);
-        } catch (NumberFormatException e) {
-
-            JOptionPane.showMessageDialog(this, "Debe ingresar un numero en el campo 'Código' y 'Stock'");
         }
 
-        JOptionPane.showMessageDialog(this, "El producto se cargó Correctamente");
-
-        txtCodigo.setText("");
-        txtDescripcion.setText("");
-        txtPrecio.setText("");
-        txtStock.setText("");
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -171,23 +192,41 @@ public class GestionProductosVista extends javax.swing.JInternalFrame {
         this.setDefaultCloseOperation(HIDE_ON_CLOSE);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButtonBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarProductoActionPerformed
+
+//        MenuDeTodoVista.escritorio1.removeAll();
+//        MenuDeTodoVista.escritorio1.repaint();
+        
+        BusquedaLupa lupa = new BusquedaLupa();
+        
+        lupa.setVisible(true);
+        this.getDesktopPane().add(lupa);
+        this.dispose();
+//        MenuDeTodoVista.escritorio1.moveToFront(gestion);
+
+    }//GEN-LAST:event_jButtonBuscarProductoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmb1;
+    private javax.swing.JDesktopPane escritorioGestionProducto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonBuscarProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
+
+    
 }
