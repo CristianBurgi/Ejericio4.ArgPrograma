@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Guias"/>
+        <group name="Guias">
+            <file>file:/E:/Curso%20Arg%20PROGRAMA%204.0/Etapa%203/Interfaces-GUI/3Etapa.EjergicioGUI.4/Ejericio4.ArgPrograma/src/vista/GestionProductosVista.java</file>
+            <file>file:/E:/Curso%20Arg%20PROGRAMA%204.0/Etapa%203/Interfaces-GUI/3Etapa.EjergicioGUI.4/Ejericio4.ArgPrograma/src/vista/BusquedaLupa.java</file>
+            <file>file:/E:/Curso%20Arg%20PROGRAMA%204.0/Etapa%203/Interfaces-GUI/3Etapa.EjergicioGUI.4/Ejericio4.ArgPrograma/src/vista/BusquedaPorNombreVista.java</file>
+            <file>file:/E:/Curso%20Arg%20PROGRAMA%204.0/Etapa%203/Interfaces-GUI/3Etapa.EjergicioGUI.4/Ejericio4.ArgPrograma/src/vista/BusquedaPorPrecio.java</file>
+            <file>file:/E:/Curso%20Arg%20PROGRAMA%204.0/Etapa%203/Interfaces-GUI/3Etapa.EjergicioGUI.4/Ejericio4.ArgPrograma/src/vista/BusquedaPorRubroVista.java</file>
+            <file>file:/E:/Curso%20Arg%20PROGRAMA%204.0/Etapa%203/Interfaces-GUI/3Etapa.EjergicioGUI.4/Ejericio4.ArgPrograma/src/vista/MenuDeTodoVista.java</file>
+            <file>file:/E:/Curso%20Arg%20PROGRAMA%204.0/Etapa%203/Interfaces-GUI/3Etapa.EjergicioGUI.4/Ejericio4.ArgPrograma/src/modelo/Producto.java</file>
+        </group>
     </open-files>
 </project-private>
