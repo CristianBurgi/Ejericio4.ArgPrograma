@@ -62,6 +62,8 @@ public class MenuDeTodoVista extends javax.swing.JFrame {
         jMenuItemSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setForeground(new java.awt.Color(102, 255, 255));
+        setIconImages(null);
         setLocation(new java.awt.Point(600, 350));
         setResizable(false);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));

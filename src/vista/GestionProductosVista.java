@@ -58,6 +58,7 @@ public class GestionProductosVista extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Gestion de Productos");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/IconoSuper.png"))); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 51));

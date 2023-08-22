@@ -40,9 +40,8 @@ public class BusquedaPorRubroVista extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Busqueda Por Rubro");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/consulta-publica-1024x838 (1).png"))); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBoxRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimento", "Limpieza", "Perfumeria" }));

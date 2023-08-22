@@ -50,9 +50,10 @@ private DefaultTableModel modelo = new DefaultTableModel(){
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
-        setTitle("Busuqeda Por Nombre");
+        setTitle("Busqueda Por Nombre");
+        setDoubleBuffered(true);
+        setFocusCycleRoot(false);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/consulta-publica-1024x838 (1).png"))); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N

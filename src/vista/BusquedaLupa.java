@@ -6,6 +6,7 @@
 package vista;
 
 import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
 
 /**
  *
@@ -14,12 +15,19 @@ import javax.swing.table.DefaultTableModel;
 public class BusquedaLupa extends javax.swing.JInternalFrame {
     private DefaultTableModel model1= new DefaultTableModel();
 
+     public boolean isCellEditable(int f, int c){
+      
+        return false;
+        }
     /**
      * Creates new form BusuqedaLupa
      */
     public BusquedaLupa() {
         initComponents();
         armarCabecera();
+     
+        
+        
     }
 
     /**
@@ -34,17 +42,28 @@ public class BusquedaLupa extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldNombreLupa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableProductosLupa = new javax.swing.JTable();
+        jTableProducto = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabelFondo = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(0, 0, 0));
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Busqueda Producto");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/consulta-publica-1024x838 (1).png"))); // NOI18N
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Escriba nombre");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 40, -1, -1));
 
-        jTextFieldNombreLupa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreLupaActionPerformed(evt);
+        jTextFieldNombreLupa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldNombreLupaKeyReleased(evt);
             }
         });
+        getContentPane().add(jTextFieldNombreLupa, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 34, 137, -1));
 
-        jTableProductosLupa.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,47 +74,58 @@ public class BusquedaLupa extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTableProductosLupa);
+        jScrollPane1.setViewportView(jTableProducto);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldNombreLupa, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldNombreLupa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 380, 240));
+
+        jButton1.setText("Modificar precio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 120, 30));
+
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wallpaper-azul-papel-de-parede-azul-fundo-5.jpg"))); // NOI18N
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNombreLupaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreLupaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNombreLupaActionPerformed
+    private void jTextFieldNombreLupaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreLupaKeyReleased
+        borrarFilas();
+        
+        for (Producto producto : MenuDeTodoVista.listaProductos) {
+            
+            if (producto.getDescripcion().startsWith(jTextFieldNombreLupa.getText())) {
+                
+                model1.addRow(new Object[]{
+                    producto.getCodigo(),
+                    producto.getDescripcion(),
+                    producto.getPrecio(),
+                    producto.getStock(),
+                    producto.getRubro()
+                });
+                
+            }
+        }
+    }//GEN-LAST:event_jTextFieldNombreLupaKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+      
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelFondo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableProductosLupa;
+    private javax.swing.JTable jTableProducto;
     private javax.swing.JTextField jTextFieldNombreLupa;
     // End of variables declaration//GEN-END:variables
 
@@ -108,13 +138,13 @@ private void armarCabecera(){
         model1 .addColumn("Rubro");
                 
         
-        jTableProductosLupa.setModel(model1);
+        jTableProducto.setModel(model1);
         
     }
     
      private void borrarFilas(){
         
-        int f = jTableProductosLupa.getRowCount()-1;
+        int f = jTableProducto.getRowCount()-1;
         
         for(;f>=0;f--){
             model1.removeRow(f);
